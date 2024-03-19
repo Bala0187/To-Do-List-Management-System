@@ -19,6 +19,16 @@
                     <input asp-for="TaskName" class="form-control" id="taskName" required />
                     <span asp-validation-for="TaskName" class="text-danger"></span>
                 </div>
+                <script>
+                    document.getElementById("taskName").addEventListener("input", function () {
+                        var username = this.value;
+                        if (!/^[A-Za-z0-9 ]+$/.test(username)) {
+                            this.setCustomValidity("Task name must be alphanumeric");
+                        } else {
+                            this.setCustomValidity("");
+                        }
+                    });
+                </script>
                 <div class="mb-3">
                     <label for="taskDescription" class="form-label">Task Description</label>
                     <input asp-for="TaskDescription" class="form-control" id="taskDescription" />
@@ -70,6 +80,8 @@
             </form>
         </div>
     </div>
+
+  
 
     <div class="mt-3">
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
